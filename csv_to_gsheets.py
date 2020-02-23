@@ -2,7 +2,11 @@ import numpy as np
 import pandas as pd
 import os
 import json
+from datetime import datetime
+import pytz
 import pygsheets
+
+timezone = pytz.timezone('Europe/Berlin')
 
 def json_file(gsheets_creds_json):
     with open('client.json', 'w') as f:
@@ -14,6 +18,8 @@ def get_worksheet(gsheet_key):
     return wks
 
 def csv_to_gsheet(csv_link, wks):
+    now = datetime.now(timezone)
+    timestamp = now.strftime("%Y-%m-%d_%H:%M:%S")
     df = pd.read_csv(csv_link)
     cols = df.columns.to_list()
 
@@ -27,7 +33,7 @@ def csv_to_gsheet(csv_link, wks):
     df[cols[1]] = df[cols[1]].astype(int)
     df[cols[2]] = df[cols[2]].astype(int)
     df['numeric'] = df['numeric'].astype(int)
-
+    df['timestamp'] = timestamp
     df.reset_index(inplace=True, drop=True)
     wks.set_dataframe(df, (1,1), nan="", fit=True)
 
