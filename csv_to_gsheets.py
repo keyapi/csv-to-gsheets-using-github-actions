@@ -34,7 +34,7 @@ def csv_to_gsheet(csv_link, wks):
 if __name__ == "__main__":
     gsheets_creds_json = os.environ["GSHEETS_CREDS_JSON"]
     json_file(gsheets_creds_json)
-    
+   
     gsheet_key = os.environ["GSHEET_KEY"]   
     wks = get_worksheet(gsheet_key)
     
