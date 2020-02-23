@@ -4,9 +4,12 @@ import os
 import json
 import pygsheets
 
-
+def json_file(gsheets_creds_json):
+    with open('client.json', 'w') as f:
+        json.dump(json.loads(gsheets_creds_json, strict=False), f)
+    
 def get_worksheet(gsheet_key):
-    gc = pygsheets.authorize(service_account_env_var = "GSHEETS_CREDS_JSON")
+    gc = pygsheets.authorize(service_file='client.json')
     wks = gc.open_by_key(gsheet_key).sheet1
     return wks
 
@@ -29,9 +32,11 @@ def csv_to_gsheet(csv_link, wks):
     wks.set_dataframe(df, (1,1), nan="", fit=True)
 
 if __name__ == "__main__":
-    #gsheets_creds_json = os.environ["GSHEETS_CREDS_JSON"]
-    gsheet_key = os.environ["GSHEET_KEY"]
-    csv_link = os.environ["CSV_LINK"]
+    gsheets_creds_json = os.environ["GSHEETS_CREDS_JSON"]
+    json_file(gsheets_creds_json)
     
+    gsheet_key = os.environ["GSHEET_KEY"]   
     wks = get_worksheet(gsheet_key)
+    
+    csv_link = os.environ["CSV_LINK"]
     csv_to_gsheet(csv_link, wks)
