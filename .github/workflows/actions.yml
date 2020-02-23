@@ -2,9 +2,9 @@ name: Python application
 
 on:
   push:
-  #schedule:
-  #  - cron: '0 3 * * *'
-  #
+  schedule:
+    - cron: '0 3 * * *'
+  
 jobs:
   build:
 
