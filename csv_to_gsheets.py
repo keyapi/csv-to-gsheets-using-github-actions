@@ -19,7 +19,7 @@ def get_worksheet(gsheet_key):
 
 def csv_to_gsheet(csv_link, wks):
     now = datetime.now(timezone)
-    timestamp = now.strftime("%Y%m%d%H%M")
+    timestamp = now.strftime("%Y-%m-%d %H:%M")
     df = pd.read_csv(csv_link)
     cols = df.columns.to_list()
 
