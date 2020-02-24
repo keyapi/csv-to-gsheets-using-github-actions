@@ -23,6 +23,5 @@ jobs:
     - name: Run Script
       env:
         GSHEETS_CREDS_JSON: ${{ secrets.GSHEETS_CREDS_JSON }}
-        GSHEET_KEY: ${{ secrets.GSHEET_KEY }}
-        CSV_LINK: ${{secrets.CSV_LINK}} 
+        CSV_SEP_METHOD_GSHEET: ${{ secrets.CSV_SEP_METHOD_GSHEET }}
       run: python csv_to_gsheets.py
