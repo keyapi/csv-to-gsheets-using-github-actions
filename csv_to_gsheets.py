@@ -22,7 +22,7 @@ def csv_to_gsheet(csv_link, wks):
     timestamp = now.strftime("%Y-%m-%d %H:%M")
     df = pd.read_csv(csv_link)
     cols = df.columns.to_list()
-
+#
     df.dropna(axis=0, subset=[cols[1]],how='any',inplace=True)
 
     df[cols[0]] = df[cols[0]].str.strip()
