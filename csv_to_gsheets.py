@@ -41,7 +41,7 @@ def csv_to_df_select_method(csv_file, sep=',', method='no_change'):
         return df_method_stock(df)
     else:
         return df
-   
+
 def set_df_to_gsheet(gc, gsheet_key, df):
     sh = gc.open_by_key(gsheet_key)
     wks = sh.sheet1
