@@ -55,11 +55,11 @@ if __name__ == "__main__":
     except:
         print('error load local .env')
 
-    gsheets_creds_json = os.environ["GSHEETS_CREDS_JSON"]
+    gsheets_creds_json = os.environ.get("GSHEETS_CREDS_JSON")
     json_file(gsheets_creds_json)
     gc = pygsheets.authorize(service_file='client.json')
 
-    json_str = os.environ["CSV_SEP_METHOD_GSHEET"]
+    json_str = os.environ.get("CSV_SEP_METHOD_GSHEET")
     
     for json_item in json.loads(json_str):
         csv_file = json_item['csv_file']
