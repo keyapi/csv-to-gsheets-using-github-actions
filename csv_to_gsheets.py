@@ -5,6 +5,7 @@ import json
 from datetime import datetime
 import pytz
 import pygsheets
+from dotenv import load_dotenv
 
 timezone = pytz.timezone('Europe/Berlin')
 
@@ -48,6 +49,8 @@ def set_df_to_gsheet(gc, gsheet_key, df):
     wks.set_dataframe(df, (1,1), nan="", fit=True)
 
 if __name__ == "__main__":
+    dotenv_path = join(dirname(__file__), '.env')
+    load_dotenv(dotenv_path)
     gsheets_creds_json = os.environ["GSHEETS_CREDS_JSON"]
     json_file(gsheets_creds_json)
     gc = pygsheets.authorize(service_file='client.json')
