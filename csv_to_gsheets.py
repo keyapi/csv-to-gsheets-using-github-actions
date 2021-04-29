@@ -53,7 +53,7 @@ if __name__ == "__main__":
         dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
         load_dotenv(dotenv_path)
     except:
-        print(' error local .env')
+        print('error load local .env')
 
     gsheets_creds_json = os.environ["GSHEETS_CREDS_JSON"]
     json_file(gsheets_creds_json)
